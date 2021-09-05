@@ -10,10 +10,10 @@ import com.example.notes.utilits.APP_ACTIVITY
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var mToolbar: androidx.appcompat.widget.Toolbar
+    private lateinit var mToolbar: androidx.appcompat.widget.Toolbar
     lateinit var mNavController: NavController
     private var _binding:ActivityMainBinding? = null
-    val mBinding get() = _binding!!
+    private val mBinding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
