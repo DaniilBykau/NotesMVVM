@@ -36,7 +36,7 @@ class AddNewNoteFragment : Fragment() {
         mViewModel = ViewModelProvider(this).get(AddNewNoteFragmentViewModel::class.java)
         mBinding.buttonAddNote.setOnClickListener {
             val name = mBinding.editTextName.text.toString()
-            val text = mBinding.editTextName.text.toString()
+            val text = mBinding.editTextText.text.toString()
             if(name.isEmpty()){
                 showToast(getString(R.string.toast_enter_name_of_note))
             }

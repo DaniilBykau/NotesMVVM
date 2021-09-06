@@ -1,9 +1,7 @@
 package com.example.notes.screens.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -37,7 +35,7 @@ class MainFragment : Fragment() {
 
     private fun initialization() {
         mViewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
-
+        setHasOptionsMenu(true)
         mAdapter = MainAdapter()
         mRecyclerView = mBinding.mainRecycleView
         mRecyclerView.adapter = mAdapter
@@ -64,5 +62,19 @@ class MainFragment : Fragment() {
             bundle.putSerializable("note", note)
             APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_noteFragment, bundle)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.exit_action_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.btn_exit ->{
+                mViewModel.sighOut()
+                APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_startFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
