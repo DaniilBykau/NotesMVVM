@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.notes.R
 import com.example.notes.databinding.FragmentStartBinding
-import com.example.notes.utilits.APP_ACTIVITY
-import com.example.notes.utilits.TYPE_ROOM
+import com.example.notes.utilits.*
 
 
 class StartFragment : Fragment() {
@@ -39,6 +38,28 @@ class StartFragment : Fragment() {
             mViewModel.initDatabase(TYPE_ROOM){
                 APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
             }
+        }
+
+        mBinding.btnFirebase.setOnClickListener {
+            mBinding.editTextPassword.visibility = View.VISIBLE
+            mBinding.editTextEmail.visibility = View.VISIBLE
+            mBinding.btnLogin.visibility = View.VISIBLE
+            mBinding.btnLogin.setOnClickListener {
+                val inputEmail = mBinding.editTextEmail.text.toString()
+                val inputPassword = mBinding.editTextPassword.text.toString()
+
+                if(inputEmail.isNotEmpty()&&inputPassword.isNotEmpty()){
+                    EMAIL = inputEmail
+                    PASSWORD = inputPassword
+                    mViewModel.initDatabase(TYPE_FIREBASE){
+                        showToast(getString(R.string.toast_firebase_init_success))
+                        //APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
+                    }
+                }else{
+                    showToast(getString(R.string.toast_empty_login))
+                }
+            }
+
         }
     }
 
