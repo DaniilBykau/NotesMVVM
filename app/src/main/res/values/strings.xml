@@ -6,4 +6,5 @@
     <string name="start_fragment_choose">Choose?</string>
     <string name="text_room">ROOM</string>
     <string name="title">Notes</string>
+    <string name="toast_enter_name_of_note">Enter name of note</string>
 </resources>
